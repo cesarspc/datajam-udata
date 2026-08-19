@@ -1,21 +1,21 @@
-﻿"_id","Ano","Indicador","Cod_Loc","Loc","Total.Si","Total.No","Porcentaje.Si","Porcentaje.No"
-"1","2021","Disposición inadecuada de basura","01","Usaquén            ","13101.3","216400.3","0.0570858765254796","0.942914123474521"
-"2","2021","Disposición inadecuada de basura","10","Engativá                ","49038.7","245488.9","0.1664995063281","0.8335004936719"
-"3","2021","Disposición inadecuada de basura","11","Suba               ","96985.7","345735","0.219067461720222","0.780932538279778"
-"4","2021","Disposición inadecuada de basura","12","Barrios Unidos     ","10141.2","45418.6","0.182527654887167","0.817472345112833"
-"5","2021","Disposición inadecuada de basura","13","Teusaquillo        ","5040.5","71851.1","0.0655533244203528","0.934446675579647"
-"6","2021","Disposición inadecuada de basura","14","Los Mártires       ","9941.5","23095.9","0.300916537015625","0.699083462984375"
-"7","2021","Disposición inadecuada de basura","15","Antonio Nariño","6378.7","21658.1","0.227511698910004","0.772488301089996"
-"8","2021","Disposición inadecuada de basura","16","Puente Aranda      ","14198.9","74940.7","0.159288352202613","0.840711647797387"
-"9","2021","Disposición inadecuada de basura","17","La Candelaria         ","1587.7","6000.9","0.209221727327834","0.790778272672166"
-"10","2021","Disposición inadecuada de basura","18","Rafael Uribe Uribe","34363.1","100831.6","0.254174904785469","0.745825095214531"
-"11","2021","Disposición inadecuada de basura","19","Ciudad Bolívar                ","53513.8","153050.7","0.259065812373375","0.740934187626625"
-"12","2021","Disposición inadecuada de basura","02","Chapinero          ","8637.5","69209.7","0.11095453657935","0.88904546342065"
-"13","2021","Disposición inadecuada de basura","20","Sumapaz       ","0","1118.9","0","1"
-"14","2021","Disposición inadecuada de basura","03","Santa Fe           ","9806.1","29069.9","0.252240456837123","0.747759543162877"
-"15","2021","Disposición inadecuada de basura","04","San Cristóbal               ","32239.3","102760.2","0.238810514113015","0.761189485886985"
-"16","2021","Disposición inadecuada de basura","05","Usme               ","53707.3","73365.5","0.422649851108971","0.577350148891029"
-"17","2021","Disposición inadecuada de basura","06","Tunjuelito         ","24604.1","45714.4","0.349895120060866","0.650104879939134"
-"18","2021","Disposición inadecuada de basura","07","Bosa               ","65188.8","167717.7","0.279892574917402","0.720107425082598"
-"19","2021","Disposición inadecuada de basura","08","Kennedy            ","87480.3","275246.8","0.241173874243198","0.758826125756802"
-"20","2021","Disposición inadecuada de basura","09","Fontibón           ","10414.3","135574.8","0.0713361476986981","0.928663852301302"
+﻿_id,Ano,Indicador,Cod_Loc,Loc,Total.Si,Total.No,Porcentaje.Si,Porcentaje.No
+1,2021,Disposición inadecuada de basura,01,Usaquén            ,13101.3,216400.3,0.05708587652547956,0.9429141234745205
+2,2021,Disposición inadecuada de basura,10,Engativá                ,49038.7,245488.9,0.16649950632809965,0.8335004936719004
+3,2021,Disposición inadecuada de basura,11,Suba               ,96985.7,345735.0,0.21906746172022223,0.7809325382797777
+4,2021,Disposición inadecuada de basura,12,Barrios Unidos     ,10141.2,45418.6,0.18252765488716663,0.8174723451128333
+5,2021,Disposición inadecuada de basura,13,Teusaquillo        ,5040.5,71851.1,0.0655533244203528,0.9344466755796472
+6,2021,Disposición inadecuada de basura,14,Los Mártires       ,9941.5,23095.9,0.3009165370156247,0.6990834629843753
+7,2021,Disposición inadecuada de basura,15,Antonio Nariño,6378.7,21658.1,0.227511698910004,0.772488301089996
+8,2021,Disposición inadecuada de basura,16,Puente Aranda      ,14198.9,74940.7,0.15928835220261253,0.8407116477973875
+9,2021,Disposición inadecuada de basura,17,La Candelaria         ,1587.7,6000.9,0.20922172732783387,0.7907782726721662
+10,2021,Disposición inadecuada de basura,18,Rafael Uribe Uribe,34363.1,100831.6,0.2541749047854686,0.7458250952145313
+11,2021,Disposición inadecuada de basura,19,Ciudad Bolívar                ,53513.8,153050.7,0.2590658123733749,0.7409341876266251
+12,2021,Disposición inadecuada de basura,02,Chapinero          ,8637.5,69209.7,0.11095453657935032,0.8890454634206497
+13,2021,Disposición inadecuada de basura,20,Sumapaz       ,0.0,1118.9,0.0,1.0
+14,2021,Disposición inadecuada de basura,03,Santa Fe           ,9806.1,29069.9,0.25224045683712315,0.7477595431628768
+15,2021,Disposición inadecuada de basura,04,San Cristóbal               ,32239.3,102760.2,0.23881051411301524,0.7611894858869848
+16,2021,Disposición inadecuada de basura,05,Usme               ,53707.3,73365.5,0.42264985110897063,0.5773501488910294
+17,2021,Disposición inadecuada de basura,06,Tunjuelito         ,24604.1,45714.4,0.34989512006086587,0.6501048799391341
+18,2021,Disposición inadecuada de basura,07,Bosa               ,65188.8,167717.7,0.2798925749174025,0.7201074250825976
+19,2021,Disposición inadecuada de basura,08,Kennedy            ,87480.3,275246.8,0.24117387424319828,0.7588261257568018
+20,2021,Disposición inadecuada de basura,09,Fontibón           ,10414.3,135574.8,0.07133614769869806,0.928663852301302
