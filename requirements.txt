@@ -1,3 +1,7 @@
 pandas
 jupyter
 ipykernel
+matplotlib
+scipy
+openpyxl
+odfpy
