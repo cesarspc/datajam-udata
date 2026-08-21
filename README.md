@@ -2,9 +2,11 @@
 
 Dashboard territorial interactivo para explorar la disposición inadecuada de basura, los delitos de alto impacto y la percepción de inseguridad en 19 localidades de Bogotá D.C. durante 2025.
 
-El producto principal es un único archivo HTML construido con Plotly, sin Dash ni servidor:
+El producto principal es un único archivo HTML construido con Plotly, sin Dash ni servidor. La versión publicada está disponible en:
 
-**[Abrir dashboard interactivo](outputs/dashboard_bogota.html)**
+**[Abrir dashboard interactivo en línea](https://udata.cesaraupc.workers.dev/)**
+
+Para utilizar la copia generada dentro del repositorio, abra `outputs/dashboard_bogota.html` en el navegador.
 
 ![Pantalla principal del dashboard](outputs/capturas/01_inicio.png)
 
@@ -69,7 +71,7 @@ En las 19 localidades analizadas se obtuvo una asociación positiva moderada: Pe
 
 ### Uso local
 
-No es necesario iniciar un servidor. Basta con descargar o clonar el repositorio y abrir el siguiente archivo en Chrome, Edge o Firefox:
+Después de ejecutar el proyecto, no es necesario iniciar un servidor. Abra en Chrome, Edge o Firefox:
 
 ```text
 outputs/dashboard_bogota.html
@@ -81,42 +83,121 @@ El archivo contiene Plotly y todos los datos necesarios. Funciona sin conexión 
 
 El dashboard puede publicarse en cualquier servicio de archivos estáticos, por ejemplo GitHub Pages, Netlify o un servidor institucional. Se debe conservar completo el archivo `outputs/dashboard_bogota.html`; no necesita API, base de datos ni proceso en segundo plano.
 
-Si se utiliza GitHub Pages, puede publicarse el repositorio desde una rama habilitada y enlazar directamente:
+La versión pública de este proyecto se encuentra desplegada en Cloudflare Workers:
+
+**<https://udata.cesaraupc.workers.dev/>**
+
+Si se utiliza GitHub Pages, publique la rama que contiene el repositorio y acceda a:
 
 ```text
-/outputs/dashboard_bogota.html
+https://<usuario>.github.io/<repositorio>/outputs/dashboard_bogota.html
 ```
+
+Para que el dashboard sea la portada de otro alojamiento estático, copie `outputs/dashboard_bogota.html` como `index.html` en la raíz de publicación. El HTML debe conservarse completo porque contiene localmente la biblioteca Plotly, las geometrías y los datos de las visualizaciones.
 
 ## Instrucciones de ejecución
 
-### 1. Preparar el entorno
+### Requisitos previos
+
+- Python 3 con acceso a `venv` y `pip`;
+- Git, si se va a clonar el repositorio;
+- espacio libre suficiente para instalar las dependencias y generar el HTML autocontenido;
+- ejecutar los comandos desde la raíz `datajam-udata/`.
+
+No se necesitan credenciales, API, conexión a una base de datos ni descarga adicional de datos.
+
+### 1. Obtener el proyecto y crear el entorno
 
 ```bash
 git clone https://github.com/cesarspc/datajam-udata.git
 cd datajam-udata
 
 python -m venv .venv
-source .venv/bin/activate       # Linux o macOS
-# .venv\Scripts\activate        # Windows
+```
 
+Active el entorno según el sistema operativo:
+
+```bash
+# Linux o macOS
+source .venv/bin/activate
+```
+
+```powershell
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
+
+```bat
+:: Windows CMD
+.venv\Scripts\activate.bat
+```
+
+Instale todas las dependencias declaradas por el proyecto:
+
+```bash
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-### 2. Reconstruir el dashboard
+### 2. Ejecución mínima recomendada
 
-Si `data/processed/dashboard_dataset.csv` ya existe, solo es necesario ejecutar:
+El repositorio ya incluye `data/processed/dashboard_dataset.csv`. Por tanto, para reproducir el producto final solo se ejecuta el notebook `07` con un kernel limpio:
 
-```text
-notebooks/07_dashboard_integrado_exportacion.ipynb
+```bash
+python scripts/execute_dashboard_notebooks.py \
+  notebooks/07_dashboard_integrado_exportacion.ipynb
 ```
 
-Desde Jupyter:
+El script abre el notebook, ejecuta todas sus celdas desde cero, detiene la ejecución si encuentra un error y guarda en el mismo notebook las salidas producidas. Al finalizar debe mostrar un mensaje similar a:
+
+```text
+APROBADO 07_dashboard_integrado_exportacion.ipynb: 12 celdas de código, kernel limpio, sin errores
+```
+
+Como alternativa, puede hacerse desde Jupyter:
 
 ```bash
 jupyter lab
 ```
 
-Abrir el notebook `07`, reiniciar el kernel y ejecutar todas las celdas. Esta ejecución reconstruye:
+Abra `notebooks/07_dashboard_integrado_exportacion.ipynb`, seleccione **Kernel > Restart Kernel and Run All Cells** y espere la confirmación de verificación de la última celda.
+
+### 3. Ejecución cuando cambia el insumo analítico
+
+Si `data/processed/dashboard_dataset.csv` no existe o se modificó `data/processed/indice_localidad_disposicion_inadecuada.csv`, ejecute preparación y dashboard, en ese orden:
+
+```bash
+python scripts/execute_dashboard_notebooks.py \
+  notebooks/00_preparacion_y_validacion.ipynb \
+  notebooks/07_dashboard_integrado_exportacion.ipynb
+```
+
+El notebook `00` realiza la integración mínima y valida 19 localidades; no reconstruye los archivos raw ni el procesamiento analítico original.
+
+Los notebooks `01` a `06` contienen componentes, análisis y comprobaciones independientes. El notebook `07` **no los carga ni depende de sus variables**, por lo que no es necesario ejecutarlos para abrir o regenerar el dashboard. Si se desea verificarlos todos, puede usarse:
+
+```bash
+python scripts/execute_dashboard_notebooks.py \
+  notebooks/00_preparacion_y_validacion.ipynb \
+  notebooks/01_kpis.ipynb \
+  notebooks/02_relacion_scatter.ipynb \
+  notebooks/03_heatmap_correlaciones.ipynb \
+  notebooks/04_mapas_territoriales.ipynb \
+  notebooks/05_ranking_localidades.ipynb \
+  notebooks/06_hallazgos.ipynb \
+  notebooks/07_dashboard_integrado_exportacion.ipynb
+```
+
+### 4. Salidas generadas
+
+| Archivo | Notebook que lo genera | Descripción |
+|---|---|---|
+| `data/processed/dashboard_dataset.csv` | `00` | Dataset analítico común: una fila por cada una de las 19 localidades. Solo se regenera cuando es necesario. |
+| `data/processed/dashboard_crime_detail.csv` | `07` | Desglose interactivo de ocho tipos de delito para cada localidad: 152 filas. |
+| `data/processed/dashboard_reporting_summary.csv` | `07` | Resumen de denuncia utilizado en el panel de percepción: 19 filas. |
+| `outputs/dashboard_bogota.html` | `07` | Dashboard final, interactivo y autocontenido, con cinco vistas, diez visualizaciones y selecciones enlazadas. |
+
+La ejecución mínima del notebook `07` reconstruye exactamente estos tres archivos:
 
 ```text
 outputs/dashboard_bogota.html
@@ -124,22 +205,27 @@ data/processed/dashboard_crime_detail.csv
 data/processed/dashboard_reporting_summary.csv
 ```
 
-También puede ejecutarse y verificarse desde la terminal:
+El notebook `07` valida que el HTML incluya Plotly sin depender de una CDN, que contenga los cinco paneles y que estén incorporados los eventos de selección. El tamaño del HTML puede variar entre versiones, pero no debe ser cero.
+
+Las imágenes de `outputs/capturas/` son material de documentación y **no** se regeneran al ejecutar el notebook. La versión actual tampoco exporta automáticamente PDF ni PNG del dashboard: el entregable reproducible es el HTML interactivo.
+
+### 5. Verificar las salidas
+
+Después de la ejecución, compruebe que los archivos existan y no estén vacíos:
 
 ```bash
-python scripts/execute_dashboard_notebooks.py \
-  notebooks/07_dashboard_integrado_exportacion.ipynb
+python -c "from pathlib import Path; paths=[Path('outputs/dashboard_bogota.html'),Path('data/processed/dashboard_crime_detail.csv'),Path('data/processed/dashboard_reporting_summary.csv')]; assert all(p.is_file() and p.stat().st_size>0 for p in paths); print('Salidas verificadas correctamente')"
 ```
 
-### 3. Regenerar el dataset analítico
+También puede revisar sus tamaños:
 
-Si `dashboard_dataset.csv` no existe o cambiaron los datos procesados de origen, ejecutar primero:
-
-```text
-notebooks/00_preparacion_y_validacion.ipynb
+```bash
+ls -lh outputs/dashboard_bogota.html \
+  data/processed/dashboard_crime_detail.csv \
+  data/processed/dashboard_reporting_summary.csv
 ```
 
-Después, ejecutar nuevamente el notebook `07`. Los notebooks `01` a `06` son análisis y validaciones independientes; no son dependencias de ejecución del dashboard final.
+Por último, abra `outputs/dashboard_bogota.html` en el navegador y compruebe la navegación entre los cuatro temas, los valores emergentes y la selección de localidades.
 
 ## Estructura del repositorio
 
@@ -163,7 +249,7 @@ datajam-udata/
 │   └── 07_dashboard_integrado_exportacion.ipynb
 ├── outputs/
 │   ├── dashboard_bogota.html        # Producto interactivo final
-│   └── capturas/                    # Imágenes para documentación
+│   └── capturas/                    # Imágenes documentales; no las genera el notebook 07
 ├── rules/                           # Especificaciones del proyecto
 ├── scripts/
 │   ├── build_dashboard_notebooks.py
