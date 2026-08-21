@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 
@@ -262,7 +263,7 @@ Responder de forma visual y reproducible la pregunta:
 
 > **¿Existe una relación entre la proporción de hogares con disposición inadecuada de basura y la brecha de percepción de inseguridad en las localidades de Bogotá D.C.?**
 
-Este notebook es el punto de entrada final: carga el dataset analítico común y las geometrías locales, reconstruye todos los componentes Plotly, integra una sola figura y exporta HTML, PDF y PNG."""),
+Este notebook es el punto de entrada final: reconstruye un HTML autónomo con una pantalla principal y cuatro paneles navegables. Los clics en mapas y barras actualizan la información de la localidad seleccionada sin usar Dash ni servidor."""),
         markdown("## 2. Importaciones"),
         code("""from pathlib import Path
 import sys
@@ -278,10 +279,8 @@ from plotly.subplots import make_subplots"""),
     create_disposition_map,
     create_indicators,
     create_insecurity_map,
-    create_integrated_dashboard,
     create_ranking,
     create_scatter_relationship,
-    export_dashboard_artifacts,
     generate_findings,
     generate_results_summary,
     load_dataset,
@@ -289,16 +288,24 @@ from plotly.subplots import make_subplots"""),
     locality_key,
     validate_dataset,
 )"""),
+        code("""from src.multipanel_dashboard import (
+    create_multipanel_figures,
+    export_multipanel_dashboard,
+    prepare_interactive_support,
+)"""),
         markdown("## 4. Carga de datos"),
         code("""df = load_dataset(PROJECT_ROOT)
 gdf, geojson = load_geography(PROJECT_ROOT, df["locality"])
-print(f"Dataset: {len(df)} registros | Geometrías: {len(gdf)}")
+crime_detail, reporting_summary, support_paths = prepare_interactive_support(PROJECT_ROOT, df)
+print(f"Dataset: {len(df)} registros | Geometrías: {len(gdf)} | Detalle delictivo: {len(crime_detail)} filas")
 df.head()"""),
         markdown("## 5. Validaciones finales"),
         code("""validation_report = validate_dataset(df)
 assert len(df) == df["locality"].nunique() == len(gdf) == 19
 assert set(df["locality"].map(locality_key)) == set(gdf["locality_key"])
 assert df[["disposicion_inadecuada_pct", "insecurity_noche_pct"]].apply(lambda s: s.between(0, 100).all()).all()
+assert crime_detail["locality"].nunique() == reporting_summary["locality"].nunique() == 19
+assert len(crime_detail) == 19 * 8
 validation_report"""),
         markdown("## 6. Cálculo de métricas"),
         code("""metrics = calculate_metrics(df)
@@ -315,18 +322,24 @@ fig_delitos = create_crime_rate_dotplot(df)
 fig_mapa_disposicion = create_disposition_map(df, geojson)
 fig_mapa_inseguridad = create_insecurity_map(df, geojson)
 fig_ranking = create_ranking(df)
+panel_figures, enriched_df, panel_payload = create_multipanel_figures(
+    df, geojson, crime_detail, reporting_summary
+)
 
 assert [len(fig_kpis.data), len(fig_scatter.data)] == [4, 2]
 assert fig_delitos.data[0].type == "scatter"
 assert fig_mapa_disposicion.data[0].type == fig_mapa_inseguridad.data[0].type == "choropleth"
 assert len(fig_ranking.layout.updatemenus[0].buttons) == 2
-print("Componentes Plotly reconstruidos y validados.")"""),
+assert set(panel_figures) == {
+    "home-hook", "official-map", "official-rate-map", "estimated-rate-map",
+    "disposition-bar", "reporting-chart", "insecurity-map", "gap-map",
+    "relationship-scatter", "contribution-map",
+}
+print("Diez componentes del dashboard multipanel reconstruidos y validados.")"""),
         markdown("## 8. Integración del dashboard"),
-        code("""fig_dashboard = create_integrated_dashboard(df, geojson)
-assert len(fig_dashboard.data) == 10
-assert "heatmap" not in {trace.type for trace in fig_dashboard.data}
-assert [trace.type for trace in fig_dashboard.data[4:6]] == ["bar", "scatter"]
-fig_dashboard.show(config={"displaylogo": False, "scrollZoom": True, "responsive": True})"""),
+        code("""assert len(panel_figures) == 10
+assert all(len(figure.data) >= 1 for figure in panel_figures.values())
+panel_figures["home-hook"].show(config={"displaylogo": False, "scrollZoom": True, "responsive": True})"""),
         markdown("## 9. Interpretación"),
         code("""from IPython.display import Markdown, display
 
@@ -335,21 +348,16 @@ assert "no demuestra causa y efecto" in results
 display(Markdown(f"> **Resultados.** {results}"))"""),
         markdown("""## 10. Exportación
 
-El HTML incorpora Plotly completo (`include_plotlyjs=True`) y puede abrirse sin internet, Python, Jupyter, Dash o servidor. El PDF y el PNG son representaciones estáticas generadas con Kaleido. También se exportan las figuras documentales de respaldo."""),
-        code("""exported_paths = export_dashboard_artifacts(fig_dashboard, df, geojson, PROJECT_ROOT)
-for path in exported_paths:
-    print(f"{path.relative_to(PROJECT_ROOT)}: {path.stat().st_size:,} bytes")"""),
+El HTML incorpora Plotly completo y puede abrirse sin internet, Python, Jupyter, Dash o servidor. JavaScript embebido gestiona la navegación y los clics por localidad. Esta versión multipanel no genera PDF ni PNG porque esos formatos no conservan la navegación."""),
+        code("""interactive_html = export_multipanel_dashboard(
+    df, geojson, crime_detail, reporting_summary, PROJECT_ROOT
+)
+print(f"{interactive_html.relative_to(PROJECT_ROOT)}: {interactive_html.stat().st_size:,} bytes")"""),
         markdown("## 11. Verificación"),
         code("""required_outputs = [
     OUTPUTS_DIR / "dashboard_bogota.html",
-    OUTPUTS_DIR / "dashboard_bogota.pdf",
-    OUTPUTS_DIR / "dashboard_bogota_preview.png",
-    FIGURES_DIR / "kpis.pdf",
-    FIGURES_DIR / "relacion_scatter.pdf",
-    FIGURES_DIR / "delitos_100k_localidad.pdf",
-    FIGURES_DIR / "mapa_disposicion.pdf",
-    FIGURES_DIR / "mapa_inseguridad.pdf",
-    FIGURES_DIR / "ranking_localidades.pdf",
+    PROCESSED_DIR / "dashboard_crime_detail.csv",
+    PROCESSED_DIR / "dashboard_reporting_summary.csv",
 ]
 for output in required_outputs:
     assert output.exists(), f"Falta {output}"
@@ -358,9 +366,13 @@ for output in required_outputs:
 html_text = required_outputs[0].read_text(encoding="utf-8")
 assert "plotly.js" in html_text.lower()
 assert '<script src="https://cdn.plot.ly' not in html_text.lower()
-assert "inadecuada de basura" in html_text.lower()
-assert "causa y efecto" in html_text
-print("Verificación aprobada: HTML autocontenido y todos los artefactos existen y no están vacíos.")"""),
+assert all(label in html_text for label in [
+    "Crímenes de alto impacto", "Disposición inadecuada de basura",
+    "Percepción frente a la tasa de crímenes", "Brecha de percepción y disposición inadecuada",
+])
+assert html_text.count("plotly_click") >= 4
+assert all(f'id="{panel}"' in html_text for panel in ["home", "crime", "waste", "perception", "relationship"])
+print("Verificación aprobada: HTML multipanel autocontenido, navegación y selecciones incluidas.")"""),
         markdown("""### Alcance interpretativo
 
 El análisis es ecológico y exploratorio a escala de localidad. La asociación observada no identifica mecanismos causales ni debe trasladarse automáticamente a hogares, personas o barrios."""),
@@ -370,7 +382,13 @@ El análisis es ecológico y exploratorio a escala de localidad. La asociación 
 
 def main() -> None:
     NOTEBOOKS.mkdir(parents=True, exist_ok=True)
-    for filename, cells in NOTEBOOK_DEFINITIONS.items():
+    requested = sys.argv[1:]
+    unknown = sorted(set(requested) - set(NOTEBOOK_DEFINITIONS))
+    if unknown:
+        raise ValueError(f"Notebooks no reconocidos: {unknown}")
+    selected = requested or list(NOTEBOOK_DEFINITIONS)
+    for filename in selected:
+        cells = NOTEBOOK_DEFINITIONS[filename]
         path = NOTEBOOKS / filename
         path.write_text(json.dumps(notebook(cells), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         print(f"Creado: {path.relative_to(ROOT)}")

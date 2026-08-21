@@ -1,0 +1,153 @@
+locality,locality_key,crime_type,official_count
+Fontibón,FONTIBON,Homicidios,36.0
+Fontibón,FONTIBON,Lesiones personales,405.0
+Fontibón,FONTIBON,Hurto a personas,6598.0
+Fontibón,FONTIBON,Hurto a residencias,265.0
+Fontibón,FONTIBON,Hurto de automóviles,121.0
+Fontibón,FONTIBON,Hurto de bicicletas,466.0
+Fontibón,FONTIBON,Hurto de motocicletas,150.0
+Fontibón,FONTIBON,Violencia intrafamiliar,1702.0
+Ciudad Bolívar,CIUDADBOLIVAR,Homicidios,237.0
+Ciudad Bolívar,CIUDADBOLIVAR,Lesiones personales,1411.0
+Ciudad Bolívar,CIUDADBOLIVAR,Hurto a personas,4243.0
+Ciudad Bolívar,CIUDADBOLIVAR,Hurto a residencias,269.0
+Ciudad Bolívar,CIUDADBOLIVAR,Hurto de automóviles,259.0
+Ciudad Bolívar,CIUDADBOLIVAR,Hurto de bicicletas,112.0
+Ciudad Bolívar,CIUDADBOLIVAR,Hurto de motocicletas,537.0
+Ciudad Bolívar,CIUDADBOLIVAR,Violencia intrafamiliar,3296.0
+Los Mártires,LOSMARTIRES,Homicidios,45.0
+Los Mártires,LOSMARTIRES,Lesiones personales,444.0
+Los Mártires,LOSMARTIRES,Hurto a personas,4570.0
+Los Mártires,LOSMARTIRES,Hurto a residencias,103.0
+Los Mártires,LOSMARTIRES,Hurto de automóviles,73.0
+Los Mártires,LOSMARTIRES,Hurto de bicicletas,134.0
+Los Mártires,LOSMARTIRES,Hurto de motocicletas,135.0
+Los Mártires,LOSMARTIRES,Violencia intrafamiliar,641.0
+Antonio Nariño,ANTONIONARINO,Homicidios,10.0
+Antonio Nariño,ANTONIONARINO,Lesiones personales,202.0
+Antonio Nariño,ANTONIONARINO,Hurto a personas,1987.0
+Antonio Nariño,ANTONIONARINO,Hurto a residencias,73.0
+Antonio Nariño,ANTONIONARINO,Hurto de automóviles,70.0
+Antonio Nariño,ANTONIONARINO,Hurto de bicicletas,88.0
+Antonio Nariño,ANTONIONARINO,Hurto de motocicletas,123.0
+Antonio Nariño,ANTONIONARINO,Violencia intrafamiliar,320.0
+Chapinero,CHAPINERO,Homicidios,14.0
+Chapinero,CHAPINERO,Lesiones personales,370.0
+Chapinero,CHAPINERO,Hurto a personas,8041.0
+Chapinero,CHAPINERO,Hurto a residencias,286.0
+Chapinero,CHAPINERO,Hurto de automóviles,42.0
+Chapinero,CHAPINERO,Hurto de bicicletas,239.0
+Chapinero,CHAPINERO,Hurto de motocicletas,68.0
+Chapinero,CHAPINERO,Violencia intrafamiliar,593.0
+Rafael Uribe Uribe,RAFAELURIBEURIBE,Homicidios,80.0
+Rafael Uribe Uribe,RAFAELURIBEURIBE,Lesiones personales,712.0
+Rafael Uribe Uribe,RAFAELURIBEURIBE,Hurto a personas,3300.0
+Rafael Uribe Uribe,RAFAELURIBEURIBE,Hurto a residencias,190.0
+Rafael Uribe Uribe,RAFAELURIBEURIBE,Hurto de automóviles,200.0
+Rafael Uribe Uribe,RAFAELURIBEURIBE,Hurto de bicicletas,100.0
+Rafael Uribe Uribe,RAFAELURIBEURIBE,Hurto de motocicletas,296.0
+Rafael Uribe Uribe,RAFAELURIBEURIBE,Violencia intrafamiliar,1290.0
+La Candelaria,LACANDELARIA,Homicidios,3.0
+La Candelaria,LACANDELARIA,Lesiones personales,153.0
+La Candelaria,LACANDELARIA,Hurto a personas,1378.0
+La Candelaria,LACANDELARIA,Hurto a residencias,21.0
+La Candelaria,LACANDELARIA,Hurto de automóviles,10.0
+La Candelaria,LACANDELARIA,Hurto de bicicletas,32.0
+La Candelaria,LACANDELARIA,Hurto de motocicletas,13.0
+La Candelaria,LACANDELARIA,Violencia intrafamiliar,148.0
+Barrios Unidos,BARRIOSUNIDOS,Homicidios,18.0
+Barrios Unidos,BARRIOSUNIDOS,Lesiones personales,382.0
+Barrios Unidos,BARRIOSUNIDOS,Hurto a personas,4006.0
+Barrios Unidos,BARRIOSUNIDOS,Hurto a residencias,199.0
+Barrios Unidos,BARRIOSUNIDOS,Hurto de automóviles,114.0
+Barrios Unidos,BARRIOSUNIDOS,Hurto de bicicletas,231.0
+Barrios Unidos,BARRIOSUNIDOS,Hurto de motocicletas,131.0
+Barrios Unidos,BARRIOSUNIDOS,Violencia intrafamiliar,753.0
+Teusaquillo,TEUSAQUILLO,Homicidios,12.0
+Teusaquillo,TEUSAQUILLO,Lesiones personales,421.0
+Teusaquillo,TEUSAQUILLO,Hurto a personas,7452.0
+Teusaquillo,TEUSAQUILLO,Hurto a residencias,268.0
+Teusaquillo,TEUSAQUILLO,Hurto de automóviles,105.0
+Teusaquillo,TEUSAQUILLO,Hurto de bicicletas,293.0
+Teusaquillo,TEUSAQUILLO,Hurto de motocicletas,117.0
+Teusaquillo,TEUSAQUILLO,Violencia intrafamiliar,739.0
+Puente Aranda,PUENTEARANDA,Homicidios,36.0
+Puente Aranda,PUENTEARANDA,Lesiones personales,680.0
+Puente Aranda,PUENTEARANDA,Hurto a personas,5701.0
+Puente Aranda,PUENTEARANDA,Hurto a residencias,244.0
+Puente Aranda,PUENTEARANDA,Hurto de automóviles,346.0
+Puente Aranda,PUENTEARANDA,Hurto de bicicletas,238.0
+Puente Aranda,PUENTEARANDA,Hurto de motocicletas,221.0
+Puente Aranda,PUENTEARANDA,Violencia intrafamiliar,1515.0
+Usaquén,USAQUEN,Homicidios,48.0
+Usaquén,USAQUEN,Lesiones personales,650.0
+Usaquén,USAQUEN,Hurto a personas,6847.0
+Usaquén,USAQUEN,Hurto a residencias,472.0
+Usaquén,USAQUEN,Hurto de automóviles,79.0
+Usaquén,USAQUEN,Hurto de bicicletas,362.0
+Usaquén,USAQUEN,Hurto de motocicletas,119.0
+Usaquén,USAQUEN,Violencia intrafamiliar,1129.0
+San Cristóbal,SANCRISTOBAL,Homicidios,81.0
+San Cristóbal,SANCRISTOBAL,Lesiones personales,928.0
+San Cristóbal,SANCRISTOBAL,Hurto a personas,2765.0
+San Cristóbal,SANCRISTOBAL,Hurto a residencias,177.0
+San Cristóbal,SANCRISTOBAL,Hurto de automóviles,155.0
+San Cristóbal,SANCRISTOBAL,Hurto de bicicletas,72.0
+San Cristóbal,SANCRISTOBAL,Hurto de motocicletas,208.0
+San Cristóbal,SANCRISTOBAL,Violencia intrafamiliar,1585.0
+Usme,USME,Homicidios,70.0
+Usme,USME,Lesiones personales,834.0
+Usme,USME,Hurto a personas,2139.0
+Usme,USME,Hurto a residencias,140.0
+Usme,USME,Hurto de automóviles,116.0
+Usme,USME,Hurto de bicicletas,36.0
+Usme,USME,Hurto de motocicletas,216.0
+Usme,USME,Violencia intrafamiliar,1102.0
+Bosa,BOSA,Homicidios,90.0
+Bosa,BOSA,Lesiones personales,1374.0
+Bosa,BOSA,Hurto a personas,4848.0
+Bosa,BOSA,Hurto a residencias,248.0
+Bosa,BOSA,Hurto de automóviles,177.0
+Bosa,BOSA,Hurto de bicicletas,481.0
+Bosa,BOSA,Hurto de motocicletas,472.0
+Bosa,BOSA,Violencia intrafamiliar,2089.0
+Kennedy,KENNEDY,Homicidios,161.0
+Kennedy,KENNEDY,Lesiones personales,1572.0
+Kennedy,KENNEDY,Hurto a personas,9354.0
+Kennedy,KENNEDY,Hurto a residencias,471.0
+Kennedy,KENNEDY,Hurto de automóviles,623.0
+Kennedy,KENNEDY,Hurto de bicicletas,734.0
+Kennedy,KENNEDY,Hurto de motocicletas,820.0
+Kennedy,KENNEDY,Violencia intrafamiliar,3190.0
+Engativá,ENGATIVA,Homicidios,51.0
+Engativá,ENGATIVA,Lesiones personales,1098.0
+Engativá,ENGATIVA,Hurto a personas,10209.0
+Engativá,ENGATIVA,Hurto a residencias,616.0
+Engativá,ENGATIVA,Hurto de automóviles,373.0
+Engativá,ENGATIVA,Hurto de bicicletas,851.0
+Engativá,ENGATIVA,Hurto de motocicletas,509.0
+Engativá,ENGATIVA,Violencia intrafamiliar,3117.0
+Suba,SUBA,Homicidios,92.0
+Suba,SUBA,Lesiones personales,1446.0
+Suba,SUBA,Hurto a personas,10775.0
+Suba,SUBA,Hurto a residencias,745.0
+Suba,SUBA,Hurto de automóviles,219.0
+Suba,SUBA,Hurto de bicicletas,947.0
+Suba,SUBA,Hurto de motocicletas,334.0
+Suba,SUBA,Violencia intrafamiliar,2987.0
+Tunjuelito,TUNJUELITO,Homicidios,30.0
+Tunjuelito,TUNJUELITO,Lesiones personales,375.0
+Tunjuelito,TUNJUELITO,Hurto a personas,2215.0
+Tunjuelito,TUNJUELITO,Hurto a residencias,92.0
+Tunjuelito,TUNJUELITO,Hurto de automóviles,79.0
+Tunjuelito,TUNJUELITO,Hurto de bicicletas,119.0
+Tunjuelito,TUNJUELITO,Hurto de motocicletas,94.0
+Tunjuelito,TUNJUELITO,Violencia intrafamiliar,725.0
+Santa Fe,SANTAFE,Homicidios,62.0
+Santa Fe,SANTAFE,Lesiones personales,526.0
+Santa Fe,SANTAFE,Hurto a personas,5466.0
+Santa Fe,SANTAFE,Hurto a residencias,117.0
+Santa Fe,SANTAFE,Hurto de automóviles,44.0
+Santa Fe,SANTAFE,Hurto de bicicletas,157.0
+Santa Fe,SANTAFE,Hurto de motocicletas,92.0
+Santa Fe,SANTAFE,Violencia intrafamiliar,914.0
