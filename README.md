@@ -81,19 +81,9 @@ El archivo contiene Plotly y todos los datos necesarios. Funciona sin conexión 
 
 ### Publicación web
 
-El dashboard puede publicarse en cualquier servicio de archivos estáticos, por ejemplo GitHub Pages, Netlify o un servidor institucional. Se debe conservar completo el archivo `outputs/dashboard_bogota.html`; no necesita API, base de datos ni proceso en segundo plano.
-
 La versión pública de este proyecto se encuentra desplegada en Cloudflare Workers:
 
 **<https://udata.cesaraupc.workers.dev/>**
-
-Si se utiliza GitHub Pages, publique la rama que contiene el repositorio y acceda a:
-
-```text
-https://<usuario>.github.io/<repositorio>/outputs/dashboard_bogota.html
-```
-
-Para que el dashboard sea la portada de otro alojamiento estático, copie `outputs/dashboard_bogota.html` como `index.html` en la raíz de publicación. El HTML debe conservarse completo porque contiene localmente la biblioteca Plotly, las geometrías y los datos de las visualizaciones.
 
 ## Instrucciones de ejecución
 
